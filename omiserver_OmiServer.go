@@ -11,7 +11,7 @@ import (
 type OmiServer struct {
 	ServerName     string
 	Address        string
-	ServerRegister omiserd.Register
+	ServerRegister *omiserd.Register
 	HandleFuncs    map[string]func(w http.ResponseWriter, r *http.Request)
 }
 
@@ -19,7 +19,7 @@ func newOmiServer(opts *redis.Options, serverName, address string) *OmiServer {
 	return &OmiServer{
 		ServerName:     serverName,
 		Address:        address,
-		ServerRegister: *omiserd.NewClient(opts, omiserd.Server).NewRegister(serverName, address),
+		ServerRegister: omiserd.NewClient(opts, omiserd.Server).NewRegister(serverName, address),
 		HandleFuncs:    make(map[string]func(w http.ResponseWriter, r *http.Request)),
 	}
 }
