@@ -34,7 +34,7 @@ func (server *OmiServer) initHandleFunc() {
 	}
 }
 
-func (server *OmiServer) Listen(weight int) {
+func (server *OmiServer) Start(weight int) {
 	server.ServerRegister.RegisterAndServe(weight, func(port string) {
 		server.initHandleFunc()
 		err := http.ListenAndServe(port, nil)

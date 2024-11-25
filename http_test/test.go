@@ -17,5 +17,5 @@ func main() {
 	server.AddHanldFunc("/hello", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "Hello", r.URL.Query().Get("name"), ", welcome to use omi, send by http server")
 	})
-	server.Listen(1)
+	server.Start(1)
 }
